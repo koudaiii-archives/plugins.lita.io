@@ -4,7 +4,7 @@ class Plugin < ActiveRecord::Base
   validates :requirements_list, presence: true
   validates :homepage, presence: true
 
-  def self.alphabetical
-    order(name: :asc)
+  def self.alphabetical_by_type
+    order(name: :asc).group_by(&:plugin_type)
   end
 end

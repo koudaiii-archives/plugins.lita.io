@@ -22,28 +22,46 @@ RSpec.describe Plugin do
     expect(subject.errors.full_messages).to include("Name has already been taken")
   end
 
-  describe '#alphabetical' do
+  describe '#alphabetical_by_type' do
     it 'returns plugins in alphabetical order' do
       b = described_class.create!(
         name: 'baby pug',
+        plugin_type: 'handler',
         version: 'x',
         requirements_list: 'x',
         homepage: 'x'
       )
       c = described_class.create!(
         name: 'cat with a flat face',
+        plugin_type: 'handler',
         version: 'x',
         requirements_list: 'x',
         homepage: 'x'
       )
       a = described_class.create!(
         name: 'anteater',
+        plugin_type: 'handler',
+        version: 'x',
+        requirements_list: 'x',
+        homepage: 'x'
+      )
+      b2 = described_class.create!(
+        name: 'baby guinea pig',
+        plugin_type: 'adapter',
+        version: 'x',
+        requirements_list: 'x',
+        homepage: 'x'
+      )
+      a2 = described_class.create!(
+        name: 'aardvark',
+        plugin_type: 'adapter',
         version: 'x',
         requirements_list: 'x',
         homepage: 'x'
       )
 
-      expect(described_class.alphabetical.to_a).to eq([a, b, c])
+      expect(described_class.alphabetical_by_type['handler']).to eq([a, b, c])
+      expect(described_class.alphabetical_by_type['adapter']).to eq([a2, b2])
     end
   end
 end
