@@ -1,0 +1,22 @@
+postgres:
+  image: postgres:9.4.0
+  environment:
+    POSTGRES_USER: lita
+  volumes_from:
+    - postgresdata
+
+postgresdata:
+  image: busybox:buildroot-2014.02
+  command: echo "Postgres data container"
+  volumes:
+    - /var/lib/postgresql/data
+
+rails:
+  build: .
+  links:
+    - postgres
+  ports:
+    - "3000:3000"
+  volumes:
+    - .:/app
+
