@@ -1,0 +1,16 @@
+.DS_Store
+.bundle
+.dockerignore
+.git
+.rspec
+.vagrant
+
+README.md
+Vagrantfile
+
+config/secrets.yml
+coverage
+fig.yml
+log
+spec
+tmp
