@@ -44,6 +44,14 @@ class PluginUpdater
     plugin_names.each { |name| plugins[name] = nil }
   end
 
+  def homepage(spec)
+    if spec.homepage.blank?
+      "https://rubygems.org/gems/#{spec.name}"
+    else
+      spec.homepage
+    end
+  end
+
   def plugins_with_attributes
     plugins.select { |name, attributes| !attributes.nil? }
   end
@@ -60,7 +68,7 @@ class PluginUpdater
           authors: spec.authors.join(', '),
           version: spec.version.to_s,
           requirements_list: requirements_list_for(spec),
-          homepage: spec.homepage || "https://rubygems.org/gems/#{spec.name}"
+          homepage: homepage(spec)
         }
       end
     end
