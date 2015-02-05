@@ -1,0 +1,14 @@
+.row.well-like{ class: plugin_counter % 2 == 0 ? 'striped' : '' }
+  .col-md-8
+    %h3.first-heading
+      = link_to plugin.name, plugin.homepage
+      .small
+        = "by #{plugin.authors}"
+
+    %p= plugin.description
+  .col-md-4
+    %p.text-right
+      %strong
+        %span= "Latest version: #{plugin.version}"
+        %br
+        %span= "Required Lita version: #{plugin.requirements_list}"
